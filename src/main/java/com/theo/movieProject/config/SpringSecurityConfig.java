@@ -17,9 +17,10 @@ public class SpringSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http)  throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/**").authenticated()
+                        .requestMatchers("/register").permitAll()
+                        .requestMatchers( "/createUser").permitAll()
                         .requestMatchers("/swagger-ui/**").permitAll()
-                        .requestMatchers("/login").permitAll())
+                        .requestMatchers("/**").authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll());
