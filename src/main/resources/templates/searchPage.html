@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search page</title>
+</head>
+<body>
+
+
+    <form th:action="@{/searchMovieResult}" method="GET">
+        <input name="query" type="text">
+        <input name="pageNumber" type="hidden" value="1">
+        <input type="submit">
+    </form>
+
+</body>
+</html>

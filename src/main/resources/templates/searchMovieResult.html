@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search result</title>
+</head>
+<body>
+    <span>Results for:</span>
+    <span th:text="${originalQuery}">query</span> <br>
+    <span>Numbers of pages found:</span>
+    <span th:text="${totalPage}">page</span> <br>
+    <span>Numbers of results:</span>
+    <span th:text="${totalResults}">results</span> <br>
+    <span>Current page:</span>
+    <span th:text="${currentPage}">current page</span> <br>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Overview</th>
+        </tr>
+        <tr th:each="movie : ${movieList}">
+            <td><img th:src="'https://image.tmdb.org/t/p/original' + ${movie.poster_path}" height="80" width="60" /></td>
+            <td><a th:text="${movie.title}" th:href="@{moviePage(movieId=${movie.id})}">title</a></td>
+            <td><span th:text="${movie.release_date}">overview</span></td>
+            <td><span th:text="${movie.overview}">overview</span></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <span th:each="i : ${#numbers.sequence( 1, totalPage, 1)}">
+        <a th:text="${i}" th:href="@{searchMovieResult(query=${originalQuery},pageNumber=${i})}">page</a>
+    <span/>
+
+</body>
+</html>
